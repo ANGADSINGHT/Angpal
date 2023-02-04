@@ -1,8 +1,5 @@
-import nextcord
-from nextcord.ext import commands
+import bbot, nextcord
 
-intentss = nextcord.Intents.all()
-bot = commands.Bot(help_command=None, intents=intentss)
 
 class AcceptOrDeny(nextcord.ui.View):
     def __init__(self):
@@ -54,14 +51,11 @@ class Applications(nextcord.ui.Modal):
         embed.add_field(name='Why should we hire you??', value="`{}`".format(self.description.value), inline=True)
 
         view = AcceptOrDeny()
-        channel = bot.get_channel(1071392140036427846)
+        channel = bbot.bot.get_channel(1071392140036427846)
         await channel.send(embed=embed,view=view)
         await view.wait()
-
-        if view.value is None:
-            await interaction.response.send_message("You timed out!")
         
-        elif view.value:
+        if view.value:
             if view.accepted:
                 embed = nextcord.Embed(title='Interview status',description='''After careful consideration, we have decided that your interiew would be **Accepted**. Congratulations!
                 We look forward to your work, make sure not to slack off >:)
