@@ -55,7 +55,7 @@ class Applications(nextcord.ui.Modal):
 
         view = AcceptOrDeny()
         channel = bot.get_channel(1071392140036427846)
-        await interaction.channel.send(embed=embed,view=view)
+        await channel.send(embed=embed,view=view)
         await view.wait()
 
         if view.value is None:
