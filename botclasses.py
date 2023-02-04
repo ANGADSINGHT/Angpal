@@ -57,6 +57,10 @@ class Applications(nextcord.ui.Modal):
         
         if view.value:
             if view.accepted:
+                main_guild=bbot.bot.get_guild(1071119870772662423)
+                role1 = nextcord.utils.find(lambda r: r.name == 'Staff', main_guild.roles)
+                await interaction.user.add_roles(role1, atomic=True)
+
                 embed = nextcord.Embed(title='Interview status',description='''After careful consideration, we have decided that your interiew would be **Accepted**. Congratulations!
                 We look forward to your work, make sure not to slack off >:)
                 ''')
